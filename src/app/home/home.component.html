@@ -1,0 +1,101 @@
+
+<header>
+  <h1>La Tana del Nerd</h1>
+  <div class="header-buttons">
+    <!-- Mostra Login se non autenticato -->
+    <button *ngIf="!isUserLoggedIn" id="login" routerLink="/login" class="login-btn">
+      👤 Login
+    </button>
+    
+    <!-- Mostra username e logout se autenticato -->
+    <div *ngIf="isUserLoggedIn" class="user-info">
+      <span class="username">👤 Ciao, {{ username }}!</span>
+      <button (click)="logout()" class="logout-btn">Logout</button>
+    </div>
+    
+    <!-- Mostra il carrello solo se l'utente è autenticato -->
+    <button *ngIf="isUserLoggedIn" id="carrello" (click)="vaiAlCarrello()" class="cart-btn">
+      🛒 Carrello ({{ numeroArticoliCarrello }})
+      <span *ngIf="totaleCarrello > 0" class="cart-total">€{{ totaleCarrello.toFixed(2) }}</span>
+    </button>
+  </div>
+</header>
+
+<div class="search-container">
+  <input 
+    [(ngModel)]="searchText" 
+    placeholder="Cerca un prodotto nerd..." 
+    class="search-input"
+  />
+</div>
+
+<div class="products-grid">
+  <div class="card" *ngFor="let prodotto of prodottiFiltrati" [class.in-cart]="isInCarrello(prodotto)">
+    <div class="product-image">
+      <img 
+        [src]="'http://localhost:8081' + prodotto.immagine" 
+        [alt]="prodotto.nome" 
+        class="immagine-prodotto" 
+      />
+      
+      <!-- Badge se già nel carrello -->
+      <div *ngIf="isInCarrello(prodotto)" class="cart-badge">
+        ✓ Nel carrello
+      </div>
+      
+      <!-- Badge se non disponibile -->
+      <div *ngIf="prodotto.quantita <= 0" class="unavailable-badge">
+        Non disponibile
+      </div>
+    </div>
+    
+    <div class="product-info">
+      <h2>{{ prodotto.nome }}</h2>
+      <p class="price">€ {{ prodotto.prezzo.toFixed(2) }}</p>
+      <p class="stock" [class.low-stock]="prodotto.quantita <= 5 && prodotto.quantita > 0">
+        <span *ngIf="prodotto.quantita > 5">Disponibile ({{ prodotto.quantita }})</span>
+        <span *ngIf="prodotto.quantita <= 5 && prodotto.quantita > 0" class="warning">
+          ⚠️ Solo {{ prodotto.quantita }} rimasti!
+        </span>
+        <span *ngIf="prodotto.quantita <= 0" class="out-of-stock">
+          ❌ Esaurito
+        </span>
+      </p>
+    </div>
+    
+    <div class="product-actions">
+      <!-- Bottone normale se non è nel carrello e disponibile -->
+      <button 
+        *ngIf="!isInCarrello(prodotto) && prodotto.quantita > 0"
+        (click)="aggiungiAlCarrello(prodotto)"
+        class="add-to-cart-btn"
+      >
+        🛒 Aggiungi al carrello
+      </button>
+      
+      <!-- Bottone diverso se già nel carrello -->
+      <button 
+        *ngIf="isInCarrello(prodotto)"
+        (click)="vaiAlCarrello()"
+        class="go-to-cart-btn"
+      >
+        📝 Modifica nel carrello
+      </button>
+      
+      <!-- Bottone disabilitato se non disponibile -->
+      <button 
+        *ngIf="prodotto.quantita <= 0"
+        disabled
+        class="unavailable-btn"
+      >
+        ❌ Non disponibile
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Messaggio se nessun prodotto trovato -->
+<div *ngIf="prodottiFiltrati.length === 0" class="no-products">
+  <h3>Nessun prodotto trovato</h3>
+  <p *ngIf="searchText">Prova a modificare i termini di ricerca</p>
+</div>

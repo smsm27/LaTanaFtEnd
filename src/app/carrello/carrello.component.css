@@ -1,0 +1,312 @@
+/* Variabili colore - Blu acceso come tema principale */
+:root {
+  --primary-color: #0066ff;
+  --primary-hover: #0052cc;
+  --secondary-color: #e6f0ff;
+  --text-dark: #333;
+  --text-light: #666;
+  --border-color: #ddd;
+}
+
+/* Centraggio e layout principale */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cart-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.cart-header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 15px;
+}
+
+.cart-header h1 {
+  color: var(--primary-color);
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+/* Stile per il placeholder delle immagini quando non disponibili */
+.placeholder-image {
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 8px;
+}
+
+/* Assicurati che le immagini si adattino correttamente */
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Migliora la visibilità del carrello vuoto */
+.empty-cart {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.empty-cart p {
+  font-size: 18px;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+/* Ridefinizione dei colori dei pulsanti */
+.continue-shopping {
+  background-color: white;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.continue-shopping:hover {
+  background-color: var(--secondary-color);
+}
+
+.checkout, .promo-btn {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  font-weight: 600;
+}
+
+.checkout:hover, .promo-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.quantity-btn {
+  border: 1px solid var(--border-color);
+  background-color: white;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.quantity-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.remove-btn {
+  background-color: #f0f0f0;
+  color: var(--text-light);
+}
+
+.remove-btn:hover {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+/* Modifica dei colori nella sezione totali */
+.totals-row.total {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.items-count {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* Miglioramenti al layout dei pulsanti */
+.cart-actions {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Stile unificato per tutti i pulsanti */
+button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.item-image {
+  width: 80px;  /* Imposta una larghezza più piccola */
+  height: 80px; /* Imposta un'altezza più piccola */
+  min-width: 80px; /* Impedisce il restringimento */
+  overflow: hidden;
+  margin-right: 15px;
+  border-radius: 6px;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Mantiene le proporzioni dell'immagine */
+  border-radius: 6px;
+}
+
+/* Altri stili per migliorare il layout del carrello */
+.item-details {
+  flex: 1;
+}
+
+.item-quantity {
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+}
+
+.quantity-input {
+  width: 30px;
+  text-align: center;
+  margin: 0 8px;
+}
+
+.item-total {
+  font-weight: bold;
+  margin: 0 15px;
+  min-width: 70px;
+  text-align: right;
+}
+
+.item-remove {
+  margin-left: 10px;
+}
+
+/* Assicurati che il pulsante di rimozione sia di dimensioni adeguate */
+.remove-btn {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 50%;
+}
+
+.btn {
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0 3px;
+}
+
+.btn-sm {
+  padding: 3px 8px;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color, #0066ff);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover, #0052cc);
+}
+
+.btn-outline-primary {
+  background-color: white;
+  color: var(--primary-color, #0066ff);
+  border: 1px solid var(--primary-color, #0066ff);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--secondary-color, #e6f0ff);
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Stile per la quantità */
+.quantity {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+/* Modifica ai pulsanti di azione del carrello */
+.cart-actions {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid var(--border-color, #ddd);
+}
+
+/* Stile specifico per il bottone checkout/procedi all'ordine */
+.checkout {
+  background-color: var(--primary-color, #0066ff);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.checkout:hover {
+  background-color: var(--primary-hover, #0052cc);
+}
+.checkout {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.cart-actions {
+  display: flex !important;
+  justify-content: space-between !important;
+  padding-top: 20px !important;
+  margin-top: 20px !important;
+  border-top: 1px solid var(--border-color, #ddd) !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
